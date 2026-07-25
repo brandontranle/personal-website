@@ -1,0 +1,161 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Prototype — Light Beam Shader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; height: 100%; background: #05040a; overflow: hidden; }
+  #c { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; }
+  .overlay {
+    position: fixed; inset: 0; z-index: 10; pointer-events: none;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 0 7vw; color: #fff;
+  }
+  .status {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.72); margin-bottom: 22px;
+  }
+  .status .dot { color: #8affb0; }
+  .name { font-family: 'Instrument Serif', Georgia, serif; font-size: clamp(54px, 9vw, 128px); line-height: 1.02; margin: 0; }
+  .role { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-size: clamp(32px, 5.6vw, 84px); line-height: 1.05; margin: 0; color: rgba(255,255,255,0.9); }
+  .sub  { font-family: 'Inter', system-ui, sans-serif; font-size: clamp(14px,1.3vw,18px); color: rgba(255,255,255,0.7); margin-top: 24px; max-width: 560px; }
+  .hint {
+    position: fixed; bottom: 22px; left: 0; right: 0; text-align: center; z-index: 10;
+    font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: rgba(255,255,255,0.42); pointer-events: none;
+  }
+</style>
+<canvas id="c"></canvas>
+<div class="overlay">
+  <div class="status"><span class="dot">●</span> available · summer 2026</div>
+  <h1 class="name">Brandon Le.</h1>
+  <h2 class="role">software engineer.</h2>
+  <div class="sub">UCLA CS · Co-founder, Vitametrics.</div>
+</div>
+<div class="hint">runtime shader · ~2kb · matches the video, but it's yours</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const canvas = document.getElementById('c');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+const scene = new THREE.Scene();
+const camera = new THREE.Camera();
+
+const uniforms = {
+  uTime: { value: 0 },
+  uResolution: { value: new THREE.Vector2() },
+  uMouse: { value: new THREE.Vector2(0.5, 0.5) },
+};
+
+const vert = `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position,1.0); }`;
+
+const frag = `
+  precision highp float;
+  varying vec2 vUv;
+  uniform float uTime;
+  uniform vec2  uResolution;
+  uniform vec2  uMouse;
+
+  float hash(vec2 p){ p = fract(p*vec2(123.34,456.21)); p += dot(p,p+45.32); return fract(p.x*p.y); }
+  float noise(vec2 p){
+    vec2 i=floor(p), f=fract(p);
+    vec2 u=f*f*(3.0-2.0*f);
+    float a=hash(i), b=hash(i+vec2(1.0,0.0)), c=hash(i+vec2(0.0,1.0)), d=hash(i+vec2(1.0,1.0));
+    return mix(mix(a,b,u.x), mix(c,d,u.x), u.y);
+  }
+  float fbm(vec2 p){
+    float v=0.0, a=0.5;
+    for(int i=0;i<4;i++){ v += a*noise(p); p*=2.03; a*=0.5; }
+    return v;
+  }
+
+  void main(){
+    vec2 uv = vUv;
+    float aspect = uResolution.x / max(uResolution.y, 1.0);
+
+    // sampled from the reference video
+    vec3 base   = vec3(0.045, 0.040, 0.075);   // near-black, faint violet
+    vec3 purple = vec3(0.600, 0.340, 0.880);   // rgb(154,86,224)
+    vec3 hot    = vec3(0.820, 0.660, 0.980);   // lavender-white core
+
+    vec2 p = uv - 0.5;
+    p.x *= aspect;
+    p += (uMouse - 0.5) * 0.04;                // whisper of parallax
+
+    float t = uTime * 0.12;                     // slow
+
+    // --- one diagonal beam: rotate space so the beam runs along 'dir' ---
+    float ang = -1.02;
+    vec2 dir = vec2(cos(ang), sin(ang));        // upper-left -> lower-right
+    vec2 nrm = vec2(-dir.y, dir.x);
+    vec2 o   = vec2(-0.12, 0.06);               // pushes glow to center-left
+    float along  = dot(p - o, dir);
+    float across = dot(p - o, nrm);
+
+    // slow undulation of the beam centerline
+    across += 0.055*sin(along*1.6 + t*1.1) + 0.028*sin(along*3.2 - t*0.7);
+
+    // soft volumetric striations along the beam (kept subtle)
+    float striate = 0.86 + 0.14 * fbm(vec2(across*6.0, along*2.2 - t*1.4));
+
+    float wBroad = 0.30;
+    float wCore  = 0.105;
+    float broad = exp(-(across*across)/(wBroad*wBroad)) * striate;
+    float core  = exp(-(across*across)/(wCore*wCore));
+
+    // fade along the beam's length so it doesn't fill the frame
+    float lenFade = smoothstep(-1.05, -0.35, along) * smoothstep(0.95, 0.15, along);
+    lenFade = 0.28 + 0.72 * lenFade;
+    broad *= lenFade;
+    core  *= lenFade;
+
+    // a bright hot spot that slowly drifts down the beam
+    float hotPos  = 0.30 * sin(t * 0.6);
+    float hotSpot = exp(-pow(along - hotPos, 2.0) / 0.14) * core;
+
+    // faint ambient purple wash on the left, dying to black on the right
+    float wash = smoothstep(0.9, -0.4, uv.x) * 0.10;
+
+    vec3 col = base;
+    col += purple * wash;
+    col += purple * broad * 0.75;
+    col += mix(purple, hot, 0.5) * core * 0.70;
+    col += hot * hotSpot * 0.95;
+
+    // whisper of grain to keep the gradients clean (no banding)
+    float gr = fract(sin(dot(gl_FragCoord.xy, vec2(12.9898,78.233))) * 43758.5453 + t);
+    col += (gr - 0.5) * 0.012;
+
+    // gentle vignette
+    vec2 cv = uv - 0.5;
+    col *= 1.0 - dot(cv, cv) * 0.35;
+
+    gl_FragColor = vec4(max(col, 0.0), 1.0);
+  }
+`;
+
+const mat = new THREE.ShaderMaterial({ vertexShader: vert, fragmentShader: frag, uniforms });
+scene.add(new THREE.Mesh(new THREE.PlaneBufferGeometry(2, 2), mat));
+
+function resize(){
+  const w = window.innerWidth, h = window.innerHeight;
+  renderer.setSize(w, h, false);
+  uniforms.uResolution.value.set(w * renderer.getPixelRatio(), h * renderer.getPixelRatio());
+}
+window.addEventListener('resize', resize);
+resize();
+
+window.addEventListener('pointermove', (e) => {
+  uniforms.uMouse.value.set(e.clientX / window.innerWidth, 1.0 - e.clientY / window.innerHeight);
+});
+
+const start = performance.now();
+function loop(){
+  uniforms.uTime.value = (performance.now() - start) / 1000;
+  renderer.render(scene, camera);
+  requestAnimationFrame(loop);
+}
+loop();
+</script>

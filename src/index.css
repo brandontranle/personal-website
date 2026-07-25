@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-sans: "Space Grotesk", "Inter", system-ui, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  background: #05040a;
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Vignette that seats the UI over the shader */
+.veil {
+  background:
+    radial-gradient(120% 80% at 50% 50%, transparent 40%, rgba(5, 4, 10, 0.5) 100%),
+    linear-gradient(180deg, rgba(5, 4, 10, 0.55) 0%, transparent 18%, transparent 80%, rgba(5, 4, 10, 0.7) 100%);
+}
+
+/* Section crossfade — driven by .stage-in / .stage-out on the stage */
+@keyframes sectionIn {
+  from { opacity: 0; transform: translateY(14px) scale(0.995); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+@keyframes sectionOut {
+  from { opacity: 1; transform: translateY(0); filter: blur(0); }
+  to   { opacity: 0; transform: translateY(-10px); filter: blur(6px); }
+}
+.stage-in > * {
+  animation: sectionIn 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+/* Reusable fade-in for content that swaps in place (e.g. experience detail) */
+.anim-in {
+  animation: sectionIn 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.stage-out > * {
+  animation: sectionOut 0.35s cubic-bezier(0.5, 0, 0.7, 0.3) both;
+}
+
+/* Contained scroll areas stay scrollable but hide the bar */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Index marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 36s linear infinite;
+}
+
+.shiny-text {
+  display: inline-block;
+}

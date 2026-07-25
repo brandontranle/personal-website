@@ -1,0 +1,179 @@
+{
+  "profile": {
+    "name": "Brandon Le",
+    "fullName": "Brandon Tran Le",
+    "role": "Engineer",
+    "tagline": "Computer Science @ UCLA.",
+    "status": "Global Security Engineering @ Disney",
+    "location": "Los Angeles, CA",
+    "resumeUrl": "/Brandon_Le_Resume.pdf",
+    "outsideOfWork": "Runner, Pianist, Tech Enthusiast, Gamer.",
+    "quote": "Run fast, still last.",
+    "socials": [
+      { "label": "LinkedIn", "href": "https://www.linkedin.com/in/brandon-tran-le/", "handle": "in/brandon-tran-le" },
+      { "label": "GitHub", "href": "https://github.com/brandontranle", "handle": "github.com/brandontranle" },
+      { "label": "Resume", "href": "/Brandon_Le_Resume.pdf", "handle": "View PDF" },
+      { "label": "Email", "href": "mailto:brandonle@ucla.edu", "handle": "brandonle@ucla.edu" }
+    ]
+  },
+  "about": {
+    "heading": "About",
+    "paragraphs": [
+      "I’m Brandon, born and raised in Monterey, CA. I enjoy taking complicated systems apart, understanding how they work, and finding ways to make them safer.",
+      "I started out building software, but cybersecurity became the part I cared about most: protecting the technology people rely on every day. These days, I build internal security tools at Disney and spend my free time experimenting with new ideas.",
+      "My aim is simple: make technology safer and more reliable, and raise digital literacy along the way."
+    ],
+    "rig": ["RTX 5070 Ti", "Ryzen 9850X3D", "64GB DDR5", "UGREEN DXP4800+"],
+    "facts": [
+      { "label": "Based in", "value": "Los Angeles, CA" },
+      { "label": "Degree", "value": "B.S. Computer Science" },
+      { "label": "Graduated", "value": "UCLA, Aug. 2026" },
+      { "label": "Fun fact", "value": "Destiny 2 is my fav." }
+    ]
+  },
+  "contact": {
+    "heading": "Let's build something.",
+    "blurb": "I am always here to learn!",
+    "email": "brandonle@ucla.edu"
+  },
+  "marquee": [
+    { "quote": "May the Force be with you", "film": "Star Wars" },
+    { "quote": "Why so serious?", "film": "The Dark Knight" },
+    { "quote": "There is no spoon", "film": "The Matrix" },
+    { "quote": "To infinity and beyond", "film": "Toy Story" },
+    { "quote": "I'll be back", "film": "The Terminator" }
+  ],
+  "projects": [
+    {
+      "title": "S&P Scraper",
+      "type": "Python Script",
+      "description": "Scrapes social media posts, comments, and likes to generate CSV data of Security & Privacy (S&P) info.",
+      "link": "https://github.com/brandontranle/scraper",
+      "skills": [{ "icon": "python" }, { "icon": "bash" }]
+    },
+    {
+      "title": "Vitametrics",
+      "type": "Open-source & Docker",
+      "description": "Captures data from Fitbit trackers and lets researchers export and analyze it at scale.",
+      "link": "https://vitametrics.org/",
+      "skills": [
+        { "icon": "react" },
+        { "icon": "nodejs" },
+        { "icon": "mongodb" },
+        { "icon": "docker" },
+        { "icon": "express" },
+        { "icon": "typescript" }
+      ]
+    },
+    {
+      "title": "Miso",
+      "type": "Web Application",
+      "description": "Invite your friends to study in your room, sanctioned for boosting your productivity and creativity.",
+      "link": "https://github.com/brandontranle/miso",
+      "skills": [
+        { "icon": "react" },
+        { "icon": "mongodb" },
+        { "icon": "nodejs" },
+        { "icon": "express" },
+        { "icon": "typescript" }
+      ]
+    },
+    {
+      "title": "MSUB",
+      "type": "Static Web Application",
+      "description": "Designed to showcase Math-Science Upward Bound to hundreds of high school students every year.",
+      "link": "https://github.com/brandontranle/msub",
+      "skills": [{ "icon": "react" }, { "icon": "sass" }, { "icon": "typescript" }]
+    },
+    {
+      "title": "notzsh",
+      "type": "Terminal Application",
+      "description": "A mimic of shell command piping, where the output of each command becomes the input for the next.",
+      "link": "https://github.com/brandontranle/notzsh",
+      "skills": [{ "icon": "c" }, { "icon": "python" }]
+    },
+    {
+      "title": "Tug-o-Word",
+      "type": "Web Application",
+      "description": "Imagine tug-o-war but with your keyboard! Battle in an intense team fight or 1v1 with your typing speed.",
+      "link": "https://github.com/brandontranle/tug-o-word",
+      "skills": [{ "icon": "laravel" }, { "icon": "php" }, { "icon": "mysql" }]
+    },
+    {
+      "title": "Peach Party",
+      "type": "Game",
+      "description": "Peach and Yoshi battle around an obstacle course to collect the most coins while avoiding Bowser and Boo.",
+      "link": "https://github.com/brandontranle/peach-party",
+      "skills": [{ "icon": "cplusplus" }, { "icon": "opengl" }]
+    }
+  ],
+  "experiences": [
+    {
+      "title": "The Walt Disney Company",
+      "role": "Global Security Design & Engineering Intern · Jan. 2026 to Present",
+      "location": "Glendale, CA",
+      "description": [
+        "Developed an automated Python pipeline that cleansed drone-detection data from multi-sensor feeds and generated dashboards for internal stakeholders, cutting analysis turnaround by 6 hours.",
+        "Programmed a VBA inventory system for 300+ items, replacing manual asset tracking with barcode-driven actions, real-time stock validation, 100% transaction logging, and automated low-stock alerts.",
+        "Built a Python API for vendor prescreening in Asana, cutting manual processing to under a minute per request by automating task routing, updates, and form-response syncing.",
+        "Engineered a Flask/SQLite kiosk app to automate R&D session tracking for 10 lab members, with check-in/out, KPI dashboards, Asana sync, and Outlook CSV exports."
+      ],
+      "skills": [{ "icon": "python" }, { "icon": "flask" }, { "icon": "sqlite" }]
+    },
+    {
+      "title": "UCLA",
+      "role": "Undergraduate Research Assistant · Oct. 2024 to Present",
+      "location": "Los Angeles, CA",
+      "description": [
+        "Co-authoring a publication comparing two VR collaboration architectures across performance metrics from 40 participants.",
+        "Delivered a Python web scraper to collect 1M+ community comments from SideQuestVR, Meta, and Reddit.",
+        "Built a Python bot simulating 16 user behaviors to test catfishing risks and trace network data on two VR apps."
+      ],
+      "skills": [{ "icon": "python" }, { "icon": "jupyter" }]
+    },
+    {
+      "title": "Grant Thornton",
+      "role": "IT Risk Analyst Intern · Jun. 2025 to Aug. 2025",
+      "location": "Los Angeles, CA",
+      "description": [
+        "Produced 3 audit-ready evidence reports across 30 IT control walkthroughs under SOX and NIST frameworks, supporting external auditor approval.",
+        "Assessed 25 security and development controls across 15 systems to verify SOX compliance ahead of year-end reporting.",
+        "Created a Python script to flag changes across current and prior-year narratives, reducing review time by 1 hour."
+      ],
+      "skills": [{ "icon": "python" }]
+    },
+    {
+      "title": "Nora AI",
+      "role": "Software Engineer Intern · Jan. 2024 to Apr. 2024",
+      "location": "Irvine, CA",
+      "description": [
+        "Protected 20K+ users by resolving SQL injection and XSS vulnerabilities, deploying CAPTCHA, rate limiting, and input sanitization to eliminate active attack vectors.",
+        "Developed RESTful search APIs in .NET Core (C#) with Redis caching, returning results in under 3 seconds.",
+        "Engineered a full-stack blog platform in C# and React.js, raising monthly user engagement by 2,500+ users."
+      ],
+      "skills": [{ "icon": "csharp" }, { "icon": "dotnetcore" }, { "icon": "react" }, { "icon": "redis" }]
+    },
+    {
+      "title": "Monterey Peninsula College",
+      "role": "Systems Engineer Intern · Sep. 2023 to Dec. 2023",
+      "location": "Monterey, CA",
+      "description": [
+        "Led development of a peer-grading platform in PHP and SQLite, scaling to 1,000+ student submissions with input validation to prevent parameter tampering and injection.",
+        "Deployed Python microservices for automated project distribution and custom CSV export, eliminating 8 hours of manual work for instructors weekly.",
+        "Achieved 99.9% uptime by configuring SSL/TLS, firewall rules, and role-based access controls to harden the hosting environment."
+      ],
+      "skills": [{ "icon": "php" }, { "icon": "sqlite" }, { "icon": "python" }]
+    },
+    {
+      "title": "Hexfork",
+      "role": "Software Engineer Intern · Jun. 2023 to Aug. 2023",
+      "location": "Los Angeles, CA",
+      "description": [
+        "Eliminated manual deployment bottlenecks by building a CI/CD pipeline with GitHub Actions and Kubernetes, reducing a multi-step release to a single automated trigger.",
+        "Reduced internal attack surface by identifying and remediating 6 vulnerabilities across exposed services, auditing infrastructure with Wireshark and Nmap.",
+        "Constructed a Python bot for tracking 20+ employees' work hours daily, integrating identity verification and timestamps to cut HR processing time by 4 hours."
+      ],
+      "skills": [{ "icon": "kubernetes" }, { "icon": "githubactions" }, { "icon": "python" }]
+    }
+  ]
+}

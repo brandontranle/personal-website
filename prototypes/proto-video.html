@@ -1,0 +1,72 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Prototype — Video Background</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; height: 100%; background: #05040a; overflow: hidden; }
+
+  /* --- the background, and only the background --- */
+  .bg-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* covers the viewport, no letterboxing */
+    z-index: 0;
+  }
+
+  /* everything below is just so you can see it in context — delete for pure bg */
+  .overlay {
+    position: fixed; inset: 0; z-index: 10; pointer-events: none;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 0 7vw; color: #ffffff;
+  }
+  .status {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.75); margin-bottom: 22px;
+  }
+  .status .dot { color: #8affb0; }
+  .name {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(54px, 9vw, 128px); line-height: 1.02; margin: 0; font-weight: 400;
+  }
+  .role {
+    font-family: 'Instrument Serif', Georgia, serif; font-style: italic;
+    font-size: clamp(32px, 5.6vw, 84px); line-height: 1.05; margin: 0;
+    color: rgba(255,255,255,0.9);
+  }
+  .sub {
+    font-family: 'Inter', system-ui, sans-serif; font-weight: 400;
+    font-size: clamp(14px,1.3vw,18px); color: rgba(255,255,255,0.7);
+    margin-top: 24px; max-width: 560px;
+  }
+  .hint {
+    position: fixed; bottom: 22px; left: 0; right: 0; text-align: center; z-index: 10;
+    font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5); pointer-events: none;
+  }
+</style>
+
+<video class="bg-video" autoplay loop muted playsinline
+       src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260210_031346_d87182fb-b0af-4273-84d1-c6fd17d6bf0f.mp4"></video>
+
+<div class="overlay">
+  <div class="status"><span class="dot">●</span> available · summer 2026</div>
+  <h1 class="name">Brandon Le.</h1>
+  <h2 class="role">software engineer.</h2>
+  <div class="sub">UCLA CS · Co-founder, Vitametrics.</div>
+</div>
+<div class="hint">full-screen video background · autoplay · loop · muted · object-cover</div>
+
+<script>
+  const v = document.querySelector('.bg-video');
+  v.addEventListener('error', () => {
+    document.querySelector('.hint').textContent =
+      'video failed to load — the CloudFront URL may be expired or access-restricted';
+    document.querySelector('.hint').style.color = '#ff9b9b';
+  });
+  v.play().catch(() => {});
+</script>

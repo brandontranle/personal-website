@@ -1,0 +1,17 @@
+{
+  "name": "Brandon Tran Le — Security Engineer",
+  "short_name": "Brandon Le",
+  "description": "Portfolio of Brandon Tran Le, security engineer and UCLA computer science student.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0d1f",
+  "theme_color": "#0b0d1f",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
