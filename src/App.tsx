@@ -87,9 +87,9 @@ export default function App() {
   const activeNum = NAV.find((n) => n.id === active)?.num ?? '01'
 
   return (
-    <div className="fixed inset-0 overflow-hidden text-white">
-      {/* Persistent beam background */}
-      <div className="pointer-events-none absolute inset-0">
+    <div className="text-white">
+      {/* Persistent beam background (fixed so it stays put while mobile scrolls) */}
+      <div className="pointer-events-none fixed inset-0 z-0">
         <Beams
           beamWidth={3}
           beamHeight={30}
@@ -101,12 +101,12 @@ export default function App() {
           rotation={30}
         />
       </div>
-      <div className="veil pointer-events-none absolute inset-0" />
+      <div className="veil pointer-events-none fixed inset-0 z-0" />
 
-      {/* Fixed app shell */}
-      <div className="relative z-10 grid h-full grid-cols-1 grid-rows-[auto_1fr_auto]">
+      {/* App shell: fixed single-view (footer pinned, no page scroll) on every size */}
+      <div className="relative z-10 flex h-[100dvh] flex-col overflow-hidden">
         {/* Top bar */}
-        <header className="px-5 py-5 md:px-8">
+        <header className="px-5 py-3 md:px-8 md:py-5">
           <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between gap-4">
             <a
               href="#index"
@@ -126,13 +126,13 @@ export default function App() {
                 alt=""
                 width="48"
                 height="48"
-                className="relative z-10 h-12 w-12 object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.12)] transition-[filter,transform] duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_0_14px_rgba(255,236,178,0.9)] group-focus-visible:scale-105 group-focus-visible:drop-shadow-[0_0_14px_rgba(255,236,178,0.9)] motion-reduce:transition-none"
+                className="relative z-10 h-9 w-9 object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.12)] transition-[filter,transform] duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_0_14px_rgba(255,236,178,0.9)] group-focus-visible:scale-105 group-focus-visible:drop-shadow-[0_0_14px_rgba(255,236,178,0.9)] motion-reduce:transition-none md:h-12 md:w-12"
               />
             </a>
 
             <nav
               aria-label="Primary navigation"
-              className="flex items-center gap-1 rounded-full border border-white/[0.12] bg-[rgba(10,12,32,0.32)] p-1.5 backdrop-blur-md"
+              className="flex items-center gap-0.5 rounded-full border border-white/[0.12] bg-[rgba(10,12,32,0.32)] p-1 backdrop-blur-md md:gap-1 md:p-1.5"
             >
               {NAV.map((n) => (
                 <a
@@ -144,7 +144,7 @@ export default function App() {
                   }}
                   aria-label={n.label}
                   aria-current={active === n.id ? 'page' : undefined}
-                  className={`flex items-baseline gap-1.5 rounded-full px-3 py-2 text-[13px] transition-colors ${
+                  className={`flex items-baseline gap-1.5 rounded-full px-2.5 py-1.5 text-[12px] transition-colors md:px-3 md:py-2 md:text-[13px] ${
                     active === n.id ? 'bg-white/10 text-white' : 'text-white/70 hover:text-white'
                   }`}
                 >
@@ -159,7 +159,7 @@ export default function App() {
         {/* Stage — crossfades on navigate; background persists */}
         <main
           key={active}
-          className={`relative min-h-0 px-5 md:px-8 ${phase === 'in' ? 'stage-in' : 'stage-out'}`}
+          className={`relative min-h-0 flex-1 px-5 md:px-8 ${phase === 'in' ? 'stage-in' : 'stage-out'}`}
         >
           <div className="mx-auto h-full w-full max-w-[1200px]">
             {NAV.map((item) => {

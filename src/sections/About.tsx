@@ -8,34 +8,34 @@ export default function About() {
     <div className="flex h-full flex-col py-2">
       <SectionHead num="04" eyebrow="About" title={['An engineer with a', 'soft spot for craft.']} />
 
-      <div className="mt-5 grid min-h-0 flex-1 gap-5 md:grid-cols-[1.1fr_0.9fr] md:gap-14">
+      <div className="mt-4 grid min-h-0 flex-1 gap-4 md:mt-5 md:grid-cols-[1.1fr_0.9fr] md:gap-14">
         {/* Bio */}
-        <div className="flex flex-col justify-center gap-3">
+        <div className="flex flex-col gap-2 md:justify-center md:gap-3">
           {about.paragraphs.map((p, i) => (
-            <p key={i} className="max-w-[560px] font-serif text-[16px] leading-[1.4] text-white/90 md:text-[21px] md:leading-[1.45]">
+            <p key={i} className="max-w-[560px] font-serif text-[13px] leading-[1.45] text-white/90 md:text-[21px]">
               {p}
             </p>
           ))}
         </div>
 
         {/* Facts + focus */}
-        <div className="flex flex-col justify-center gap-5">
-          <dl className="grid grid-cols-2 gap-x-6 gap-y-4">
+        <div className="flex flex-col gap-4 md:justify-center md:gap-5">
+          <dl className="grid grid-cols-2 gap-x-6 gap-y-3 md:gap-y-4">
             {about.facts.map((f) => (
-              <div key={f.label} className="flex flex-col gap-1">
+              <div key={f.label} className="flex flex-col gap-0.5 md:gap-1">
                 <dt className="font-mono text-[10px] uppercase tracking-[0.08em] text-white/45">{f.label}</dt>
-                <dd className="text-sm text-white">{f.value}</dd>
+                <dd className="text-[13px] text-white md:text-sm">{f.value}</dd>
               </div>
             ))}
           </dl>
 
-          <div className="flex flex-col gap-3 border-t border-white/[0.12] pt-5">
+          <div className="flex flex-col gap-2.5 border-t border-white/[0.12] pt-4 md:gap-3 md:pt-5">
             <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-white/45">Battlestation</span>
             <div className="flex flex-wrap gap-2">
               {about.rig.map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border border-white/15 px-3 py-1.5 font-mono text-[12px] text-white/80"
+                  className="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[11px] text-white/80 md:px-3 md:py-1.5 md:text-[12px]"
                 >
                   {item}
                 </span>
