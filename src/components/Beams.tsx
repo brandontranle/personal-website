@@ -1,12 +1,9 @@
-import { forwardRef, useImperativeHandle, useEffect, useRef, useMemo, FC, ReactNode } from 'react';
+import { forwardRef, useImperativeHandle, useEffect, useRef, useMemo } from 'react';
+import type { FC, ReactNode } from 'react';
 
 import * as THREE from 'three';
 
-import { Canvas, useFrame } from '@react-three/fiber';
-import { PerspectiveCamera } from '@react-three/drei';
-import { degToRad } from 'three/src/math/MathUtils.js';
-
-import '../App.css';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 
 type UniformValue = THREE.IUniform<unknown> | unknown;
 
@@ -77,11 +74,58 @@ function extendMaterial<T extends THREE.Material = THREE.Material>(
   return mat;
 }
 
-const CanvasWrapper: FC<{ children: ReactNode }> = ({ children }) => (
-  <Canvas dpr={[1, 2]} frameloop="always" className="beams-container">
-    {children}
-  </Canvas>
-);
+const FrameLimiter: FC = () => {
+  const invalidate = useThree(state => state.invalidate);
+
+  useEffect(() => {
+    const frameInterval = 1000 / 30;
+    let frameId = 0;
+    let lastFrame = 0;
+
+    const loop = (time: number) => {
+      if (time - lastFrame >= frameInterval) {
+        lastFrame = time;
+        invalidate();
+      }
+      frameId = requestAnimationFrame(loop);
+    };
+
+    const handleVisibility = () => {
+      cancelAnimationFrame(frameId);
+      if (!document.hidden) {
+        lastFrame = performance.now();
+        frameId = requestAnimationFrame(loop);
+      }
+    };
+
+    if (!document.hidden) frameId = requestAnimationFrame(loop);
+    document.addEventListener('visibilitychange', handleVisibility);
+
+    return () => {
+      cancelAnimationFrame(frameId);
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
+  }, [invalidate]);
+
+  return null;
+};
+
+const CanvasWrapper: FC<{ children: ReactNode }> = ({ children }) => {
+  const dpr = window.matchMedia('(max-width: 767px)').matches ? 1 : 1.5;
+
+  return (
+    <Canvas
+      dpr={dpr}
+      frameloop="demand"
+      gl={{ antialias: false, powerPreference: 'high-performance' }}
+      camera={{ position: [0, 0, 20], fov: 30 }}
+      className="beams-container"
+    >
+      <FrameLimiter />
+      {children}
+    </Canvas>
+  );
+};
 
 const hexToNormalizedRGB = (hex: string): [number, number, number] => {
   const clean = hex.replace('#', '');
@@ -250,13 +294,12 @@ const Beams: FC<BeamsProps> = ({
 
   return (
     <CanvasWrapper>
-      <group rotation={[0, 0, degToRad(rotation)]}>
+      <group rotation={[0, 0, THREE.MathUtils.degToRad(rotation)]}>
         <PlaneNoise ref={meshRef} material={beamMaterial} count={beamNumber} width={beamWidth} height={beamHeight} />
         <DirLight color={lightColor} position={[0, 3, 10]} />
       </group>
       <ambientLight intensity={1} />
       <color attach="background" args={['#000000']} />
-      <PerspectiveCamera makeDefault position={[0, 0, 20]} fov={30} />
     </CanvasWrapper>
   );
 };

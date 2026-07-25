@@ -66,7 +66,7 @@ export default function Experience() {
                 onClick={() => setSel(i)}
                 className={`-ml-px w-full border-l-2 px-4 py-2.5 text-left font-sans text-sm transition-colors ${
                   i === sel
-                    ? 'border-violet-400 bg-white/[0.04] text-white'
+                    ? 'border-[#ffecb2] bg-white/[0.04] text-white'
                     : 'border-transparent text-white/45 hover:text-white/80'
                 }`}
               >
@@ -80,13 +80,13 @@ export default function Experience() {
         <div key={sel} className="anim-in no-scrollbar flex min-h-0 flex-col overflow-y-auto pr-1">
           <h3 className="font-serif text-3xl text-white">{e.title}</h3>
           <div className="mt-1.5 flex flex-col gap-0.5">
-            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-violet-300/70">{roleTitle}</span>
+            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[#ffecb2]/80">{roleTitle}</span>
             <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-white/40">{roleMeta}</span>
           </div>
           <ul className="mt-5 flex flex-col gap-3">
             {e.description.map((d, i) => (
               <li key={i} className="flex gap-3 text-sm leading-relaxed text-white/70">
-                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-violet-400/70" />
+                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[#ffecb2]/75" />
                 {d}
               </li>
             ))}

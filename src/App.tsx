@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { ComponentType } from 'react'
-import ColorBends from './components/ColorBends'
 import Arrow from './components/Arrow'
+import Beams from './components/Beams'
 import Index from './sections/Index'
 import Work from './sections/Work'
 import Experience from './sections/Experience'
@@ -10,8 +10,6 @@ import Contact from './sections/Contact'
 import { NAV } from './lib/nav'
 import type { NavHandler, SectionId } from './lib/nav'
 import { content } from './lib/content'
-import Beams from './components/Beams';
-
 
 const SECTIONS: Record<SectionId, ComponentType<{ onNav: NavHandler }>> = {
   index: Index,
@@ -33,6 +31,17 @@ function formatTime() {
   )
 }
 
+function PacificClock() {
+  const [time, setTime] = useState(formatTime)
+
+  useEffect(() => {
+    const id = window.setInterval(() => setTime(formatTime()), 1000)
+    return () => window.clearInterval(id)
+  }, [])
+
+  return <span className="text-white">{time}</span>
+}
+
 export default function App() {
   const [active, setActive] = useState<SectionId>(() => {
     const section = window.location.hash.slice(1) as SectionId
@@ -40,7 +49,6 @@ export default function App() {
   })
   const [phase, setPhase] = useState<'in' | 'out'>('in')
   const [pending, setPending] = useState<SectionId | null>(null)
-  const [time, setTime] = useState(formatTime)
 
   const navigate: NavHandler = (id) => {
     if (id === active) return
@@ -76,27 +84,22 @@ export default function App() {
     }
   }, [])
 
-  useEffect(() => {
-    const id = setInterval(() => setTime(formatTime()), 1000)
-    return () => clearInterval(id)
-  }, [])
-
   const activeNum = NAV.find((n) => n.id === active)?.num ?? '01'
 
   return (
     <div className="fixed inset-0 overflow-hidden text-white">
-      {/* Persistent shader background */}
+      {/* Persistent beam background */}
       <div className="pointer-events-none absolute inset-0">
-         <Beams
-    beamWidth={3}
-    beamHeight={30}
-    beamNumber={20}
-    lightColor="#ffecb2"
-    speed={2}
-    noiseIntensity={1.75}
-    scale={0.2}
-    rotation={30}
-  />
+        <Beams
+          beamWidth={3}
+          beamHeight={30}
+          beamNumber={20}
+          lightColor="#ffecb2"
+          speed={2}
+          noiseIntensity={1.75}
+          scale={0.2}
+          rotation={30}
+        />
       </div>
       <div className="veil pointer-events-none absolute inset-0" />
 
@@ -116,14 +119,14 @@ export default function App() {
             >
               <span
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-1 rounded-full bg-violet-500/0 blur-xl transition-all duration-300 group-hover:scale-150 group-hover:bg-violet-500/60 group-focus-visible:scale-150 group-focus-visible:bg-violet-500/60 motion-reduce:transition-none"
+                className="pointer-events-none absolute inset-1 rounded-full bg-[#ffecb2]/0 blur-xl transition-all duration-300 group-hover:scale-150 group-hover:bg-[#ffecb2]/60 group-focus-visible:scale-150 group-focus-visible:bg-[#ffecb2]/60 motion-reduce:transition-none"
               />
               <img
                 src="/logo.webp"
                 alt=""
                 width="48"
                 height="48"
-                className="relative z-10 h-12 w-12 object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.12)] transition-[filter,transform] duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_0_14px_rgba(196,181,253,0.9)] group-focus-visible:scale-105 group-focus-visible:drop-shadow-[0_0_14px_rgba(196,181,253,0.9)] motion-reduce:transition-none"
+                className="relative z-10 h-12 w-12 object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.12)] transition-[filter,transform] duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_0_14px_rgba(255,236,178,0.9)] group-focus-visible:scale-105 group-focus-visible:drop-shadow-[0_0_14px_rgba(255,236,178,0.9)] motion-reduce:transition-none"
               />
             </a>
 
@@ -181,7 +184,7 @@ export default function App() {
           <div className="mx-auto grid w-full max-w-[1200px] grid-cols-2 items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.06em] text-white/45 md:grid-cols-3">
             <span className="inline-flex items-center gap-2.5">
               <span className="text-white/45">{content.profile.location.split(',')[0]}</span>
-              <span className="text-white">{time}</span>
+              <PacificClock />
             </span>
             <span className="hidden items-center justify-center gap-2.5 md:inline-flex">
               <span className="text-white/45">Section</span>

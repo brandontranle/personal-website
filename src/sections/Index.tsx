@@ -1,7 +1,6 @@
 import Arrow from '../components/Arrow'
 import type { NavHandler } from '../lib/nav'
 import { content } from '../lib/content'
-import ShinyText from '../components/ShinyText';
 
 
 function Marquee({ quotes }: { quotes: { quote: string; film: string }[] }) {
@@ -54,18 +53,7 @@ export default function Index({ onNav }: { onNav: NavHandler }) {
 
         <h1 className="flex flex-col font-serif text-[clamp(60px,9vw,144px)] leading-[0.95] tracking-[-0.025em] text-white">
           <span>{profile.name}.</span>
-          <ShinyText
-            text={`${profile.role}.`}
-            speed={2}
-            delay={0}
-            color="#b5b5b5"
-            shineColor="#ffffff"
-            spread={120}
-            direction="left"
-            yoyo={false}
-            pauseOnHover={false}
-            disabled={false}
-          />
+          <span className="shiny-text">{profile.role}.</span>
         </h1>
 
         <p className="max-w-[580px] text-base leading-relaxed text-white/70">{profile.tagline}</p>

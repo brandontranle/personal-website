@@ -12,7 +12,7 @@ export default function SectionHead({ num, eyebrow, title }: SectionHeadProps) {
       </span>
       <h2 className="flex flex-col font-serif text-[clamp(32px,5.4vw,76px)] leading-[0.98] tracking-[-0.02em] text-white">
         <span>{title[0]}</span>
-        <span className="italic text-white/70">{title[1]}</span>
+        <span className="italic shiny-text">{title[1]}</span>
       </h2>
     </div>
   )
