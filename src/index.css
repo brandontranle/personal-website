@@ -96,7 +96,7 @@ body,
   to   { transform: translateX(-50%); }
 }
 .animate-marquee {
-  animation: marquee 36s linear infinite;
+  animation: marquee 100s linear infinite;
 }
 
 /* CSS-only headline shimmer; avoids a per-frame JavaScript animation. */

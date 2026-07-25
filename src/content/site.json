@@ -7,7 +7,7 @@
     "status": "Global Security Engineering @ Disney",
     "location": "Los Angeles, CA",
     "resumeUrl": "/Brandon_Le_Resume.pdf",
-    "outsideOfWork": "Runner, Pianist, Tech Enthusiast, Gamer.",
+    "outsideOfWork": "Gamer, Pianist, Runner, Tech Enthusiast.",
     "quote": "Run fast, still last.",
     "socials": [
       { "label": "LinkedIn", "href": "https://www.linkedin.com/in/brandon-tran-le/", "handle": "in/brandon-tran-le" },
@@ -37,11 +37,20 @@
     "email": "brandonle@ucla.edu"
   },
   "marquee": [
-    { "quote": "May the Force be with you", "film": "Star Wars" },
-    { "quote": "Why so serious?", "film": "The Dark Knight" },
-    { "quote": "There is no spoon", "film": "The Matrix" },
-    { "quote": "To infinity and beyond", "film": "Toy Story" },
-    { "quote": "I'll be back", "film": "The Terminator" }
+    { "quote": "What was the song of the sirens like?", "film": "The Odyssey" },
+    { "quote": "Now I am become Death, the destroyer of worlds.", "film": "Oppenheimer" },
+    { "quote": "It's not who I am underneath, but what I do that defines me.", "film": "Batman Begins" },
+    { "quote": "You either die a hero, or live long enough to become the villain.", "film": "The Dark Knight" },
+    { "quote": "A hero can be anyone.", "film": "The Dark Knight Rises" },
+    { "quote": "Sometimes you gotta run before you can walk.", "film": "Iron Man" },
+    { "quote": "Part of the journey is the end.", "film": "Avengers: Endgame" },
+    { "quote": "Don't be what they made you.", "film": "Logan" },
+    { "quote": "It's a leap of faith.", "film": "Spider-Man: Into the Spider-Verse" },
+    { "quote": "Life's simple. You make choices and you don't look back.", "film": "Tokyo Drift" },
+    { "quote": "I live my life a quarter mile at a time. For those ten seconds or less, I'm free.", "film": "The Fast and the Furious" },
+    { "quote": "John is a man of focus, commitment, sheer will.", "film": "John Wick" },
+    { "quote": "What we do in life echoes in eternity.", "film": "Gladiator" },
+    { "quote": "Where we're going, we don't need roads.", "film": "Back to the Future" }
   ],
   "projects": [
     {
