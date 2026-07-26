@@ -37,6 +37,8 @@
     "email": "brandonle@ucla.edu"
   },
   "marquee": [
+    { "quote": "Life's simple. You make choices and you don't look back.", "film": "Tokyo Drift" },
+    { "quote": "I live my life a quarter mile at a time. For those ten seconds or less, I'm free.", "film": "The Fast and the Furious" },
     { "quote": "What was the song of the sirens like?", "film": "The Odyssey" },
     { "quote": "Now I am become Death, the destroyer of worlds.", "film": "Oppenheimer" },
     { "quote": "It's not who I am underneath, but what I do that defines me.", "film": "Batman Begins" },
@@ -46,13 +48,25 @@
     { "quote": "Part of the journey is the end.", "film": "Avengers: Endgame" },
     { "quote": "Don't be what they made you.", "film": "Logan" },
     { "quote": "It's a leap of faith.", "film": "Spider-Man: Into the Spider-Verse" },
-    { "quote": "Life's simple. You make choices and you don't look back.", "film": "Tokyo Drift" },
-    { "quote": "I live my life a quarter mile at a time. For those ten seconds or less, I'm free.", "film": "The Fast and the Furious" },
     { "quote": "John is a man of focus, commitment, sheer will.", "film": "John Wick" },
     { "quote": "What we do in life echoes in eternity.", "film": "Gladiator" },
     { "quote": "Where we're going, we don't need roads.", "film": "Back to the Future" }
   ],
   "projects": [
+    {
+      "title": "Bruin Hot Take",
+      "type": "Web Application",
+      "description": "A social media app for UCLA students  to share their hot takes.",
+      "link": "https://github.com/brandontranle/bruin-hot-take",
+      "skills": [{ "icon": "react" }, { "icon": "nodejs" }, { "icon": "mongodb" }, { "icon": "express" }, { "icon": "typescript" }]
+    },
+    {
+      "title": "Ultron",
+      "type": "Open-source",
+      "description": "An VRChat AI bot that can perform tasks like chatting, speaking, and more.",
+      "link": "https://github.com/zhaotjson/Ultron",
+      "skills": [{ "icon": "python" }, { "icon": "bash" }]
+    },
     {
       "title": "S&P Scraper",
       "type": "Python Script",
@@ -62,7 +76,7 @@
     },
     {
       "title": "Vitametrics",
-      "type": "Open-source & Docker",
+      "type": "Open-source",
       "description": "Captures data from Fitbit trackers and lets researchers export and analyze it at scale.",
       "link": "https://vitametrics.org/",
       "skills": [
@@ -118,8 +132,26 @@
   ],
   "experiences": [
     {
-      "title": "The Walt Disney Company",
-      "role": "Global Security Design & Engineering Intern · Jan. 2026 to Present",
+      "title": "The Walt Disney Company II",
+      "role": "Application Engineer · Sep. 2026 to Present",
+      "location": "Glendale, CA",
+      "description": [
+        "Protecting the magic!"
+      ],
+      "skills": [{ "icon": "python" }]
+    },
+    {
+      "title": "Accenture",
+      "role": "Technology Summer Analyst · Jun. 2026 to Aug. 2026",
+      "location": "Culver City, CA",
+      "description": [
+        "larping."
+      ],
+      "skills": [{ "icon": "mysql" }]
+    },
+    {
+      "title": "The Walt Disney Company I",
+      "role": "Global Security Design & Engineering Intern · Jan. 2026 to Jun. 2026",
       "location": "Glendale, CA",
       "description": [
         "Developed an automated Python pipeline that cleansed drone-detection data from multi-sensor feeds and generated dashboards for internal stakeholders, cutting analysis turnaround by 6 hours.",
@@ -128,21 +160,21 @@
         "Engineered a Flask/SQLite kiosk app to automate R&D session tracking for 10 lab members, with check-in/out, KPI dashboards, Asana sync, and Outlook CSV exports."
       ],
       "skills": [{ "icon": "python" }, { "icon": "flask" }, { "icon": "sqlite" }]
-    },
+    }, 
     {
       "title": "UCLA",
-      "role": "Undergraduate Research Assistant · Oct. 2024 to Present",
+      "role": "Undergraduate Research Assistant · Oct. 2024 to Jun. 2026",
       "location": "Los Angeles, CA",
       "description": [
         "Co-authoring a publication comparing two VR collaboration architectures across performance metrics from 40 participants.",
         "Delivered a Python web scraper to collect 1M+ community comments from SideQuestVR, Meta, and Reddit.",
         "Built a Python bot simulating 16 user behaviors to test catfishing risks and trace network data on two VR apps."
       ],
-      "skills": [{ "icon": "python" }, { "icon": "jupyter" }]
+      "skills": [{ "icon": "python" }, { "icon": "jupyter" }, { "icon": "csharp" }]
     },
     {
       "title": "Grant Thornton",
-      "role": "IT Risk Analyst Intern · Jun. 2025 to Aug. 2025",
+      "role": "Cyber Risk Advisory Intern · Jun. 2025 to Aug. 2025",
       "location": "Los Angeles, CA",
       "description": [
         "Produced 3 audit-ready evidence reports across 30 IT control walkthroughs under SOX and NIST frameworks, supporting external auditor approval.",
@@ -150,6 +182,28 @@
         "Created a Python script to flag changes across current and prior-year narratives, reducing review time by 1 hour."
       ],
       "skills": [{ "icon": "python" }]
+    },
+    {
+      "title": "U.S. Naval Research Laboratory",
+      "role": "Security Research Intern · Oct. 2024 to Dec. 2024",
+      "location": "Los Angeles, CA",
+      "description": [
+        "Conducting network security research under the supervision of officer Jonathan Decker, focusing on Explainable AI to improve transparency in AI/ML models. ",
+        "Surveying existing literature on the use of visual metaphors to explain AI decision-making processes, contributing to the development of more interpretable machine learning models.",
+        "Collaborating with the research team to explore the implications of hidden inference mechanisms in AI systems and their potential security vulnerabilities."
+      ],
+      "skills": [{ "icon": "python" }, { "icon": "jupyter" }, { "icon": "tensorflow" }]
+    },
+    {
+      "title": "Vitametrics",
+      "role": "Founder · Jan. 2024 to Oct. 2024",
+      "location": "Monterey, CA",
+      "description": [
+        "Wrote 40K+ lines of code, developing HIPAA compliance in secure, reusable React.js components and back-end solutions. ",
+        "Managed a beta test with 100+ Fitbit devices at Iowa State University, collecting security-related feedback and performance data to identify vulnerabilities and optimize performance",
+        "Implemented security practices, including encryption, JWT, and input validation, to protect sensitive data and ensure ISO 27001 compliance during collaboration with academic partners"
+      ],
+      "skills": [{ "icon": "react" }, { "icon": "nodejs" }, { "icon": "mongodb" }, { "icon": "docker" }]
     },
     {
       "title": "Nora AI",
