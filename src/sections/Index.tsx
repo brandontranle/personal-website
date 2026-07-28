@@ -53,7 +53,7 @@ export default function Index({ onNav }: { onNav: NavHandler }) {
 
         <h1 className="flex flex-col font-serif text-[38px] leading-[1.02] tracking-[-0.025em] text-white md:text-[clamp(60px,9vw,144px)] md:leading-[0.95]">
           <span>{profile.name}.</span>
-          <span className="shiny-text">{profile.role}.</span>
+          <span className="shiny-text italic">{profile.role}.</span>
         </h1>
 
         <p className="max-w-[580px] text-[13px] leading-relaxed text-white/70 md:text-base">{profile.tagline}</p>
